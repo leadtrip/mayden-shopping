@@ -1,0 +1,14 @@
+<table th:fragment="accountTable" class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date created</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="shoppingList : ${shoppingLists}">
+        <td th:text="${shoppingList.id}"></td>
+        <td th:text="${@uiFormatter.formatDateTime(shoppingList.createdAt)}"></td>
+    </tr>
+    </tbody>
+</table>

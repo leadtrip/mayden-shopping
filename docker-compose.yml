@@ -1,12 +1,12 @@
 services:
   db:
     image: mysql:8.0
-    container_name: sb-strava-db
+    container_name: shopping-db
     environment:
-      MYSQL_ROOT_PASSWORD: sbstravaapi_root_pw
-      MYSQL_DATABASE: sb_strava_db
-      MYSQL_USER: sb_strava
-      MYSQL_PASSWORD: sb_strava
+      MYSQL_ROOT_PASSWORD: shopping_root_pw
+      MYSQL_DATABASE: shopping_db
+      MYSQL_USER: mayden_shopping
+      MYSQL_PASSWORD: mayden_shopping
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}" ]
       interval: 5s
@@ -19,24 +19,22 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     networks:
-      - app-network
+      - shopping-network
   app:
     build: .
-    container_name: sb-strava-app
+    container_name: shopping-app
     ports:
-      - "9050:9050"
+      - "9051:9051"
     depends_on:
       db:
         condition: service_healthy
     restart: always
     networks:
-      - app-network
+      - shopping-network
     environment:
-      DB_HOST: sb-strava-db
-      STRAVA_CLIENT_ID: ${STRAVA_CLIENT_ID}
-      STRAVA_CLIENT_SECRET: ${STRAVA_CLIENT_SECRET}
+      DB_HOST: shopping-db
 volumes:
   db_data:
 networks:
-  app-network:
+  shopping-network:
     driver: bridge

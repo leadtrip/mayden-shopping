@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-echo "🧹 compose coming down..."
+echo "🧹 compose down..."
 docker compose down
 
-echo "🔨 rebuilding app..."
+echo "🔨 rebuilding..."
 ./gradlew clean build -x test
 
-echo "🚀 compose coming up..."
+echo "🚀 compose up..."
 docker compose up --build
