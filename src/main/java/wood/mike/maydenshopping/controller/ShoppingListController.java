@@ -38,7 +38,7 @@ public class ShoppingListController {
     }
 
     @GetMapping("/shoppingLists/{id}")
-    public String shoppingLists(Model model, @AuthenticationPrincipal UserDetails principal, @PathVariable long id) {
+    public String shoppingLists(Model model, @AuthenticationPrincipal UserDetails principal, @PathVariable int id) {
         AppUser user = appUserRepository.findByUsername(principal.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 

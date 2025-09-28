@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Integer> {
     List<ShoppingList> findByUser(AppUser user);
 
-    Optional<ShoppingList> findByIdAndUser(Long id, AppUser user);
+    Optional<ShoppingList> findByIdAndUser(Integer id, AppUser user);
 }

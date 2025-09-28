@@ -13,8 +13,7 @@ CREATE TABLE shopping_list_item (
                                     item_price INT NOT NULL,
                                     created_at DATETIME NOT NULL default now(),
                                     purchased BOOLEAN NOT NULL DEFAULT FALSE,
-                                    CONSTRAINT fk_shopping_list FOREIGN KEY (shopping_list_id) REFERENCES shopping_list(id),
-                                    CONSTRAINT uq_item_per_list UNIQUE (shopping_list_id, item_idx)
+                                    CONSTRAINT fk_shopping_list FOREIGN KEY (shopping_list_id) REFERENCES shopping_list(id)
 );
 
 

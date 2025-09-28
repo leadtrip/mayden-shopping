@@ -26,7 +26,7 @@ public class ShoppingListItem {
     @Column(nullable = false)
     private Integer itemIdx;
 
-    @Column(nullable = false)
+    @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(nullable = false)

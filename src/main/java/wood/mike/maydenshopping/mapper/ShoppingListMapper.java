@@ -6,6 +6,7 @@ import wood.mike.maydenshopping.dto.ShoppingListItemDTO;
 import wood.mike.maydenshopping.model.ShoppingList;
 import wood.mike.maydenshopping.model.ShoppingListItem;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,10 +17,12 @@ public class ShoppingListMapper {
                 list.getId(),
                 list.getCreatedAt(),
                 list.getItems().stream()
+                        .sorted(Comparator.comparingInt(ShoppingListItem::getItemIdx))
                         .map(this::toDTO)
                         .collect(Collectors.toList())
         );
     }
+
 
     public ShoppingListItemDTO toDTO(ShoppingListItem item) {
         return new ShoppingListItemDTO(
