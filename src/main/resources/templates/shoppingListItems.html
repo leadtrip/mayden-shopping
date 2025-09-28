@@ -1,16 +1,27 @@
 <tbody th:fragment="itemsTableFragment" id="itemsBody">
-    <tr th:each="item : ${list.items}" th:id="'item-' + ${item.id}">
-        <td th:text="${item.itemName}" th:classappend="${item.purchased} ? 'crossed' : ''"></td>
-        <td th:text="'£' + ${#numbers.formatDecimal(item.itemPrice / 100.0, 1, 'COMMA', 2, 'POINT')}"></td>
-        <td>
-            <button type="button"
-                    th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'toggle\')'"
-                    th:text="${item.purchased} ? 'Uncross' : 'Cross off'"></button>
-        </td>
-        <td>
-            <button type="button" th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'move?direction=up\')'">↑</button>
-            <button type="button" th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'move?direction=down\')'">↓</button>
-            <button type="button" th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'remove\')'">Remove</button>
-        </td>
-    </tr>
+<tr th:each="item : ${list.items}" th:id="'item-' + ${item.id}">
+    <td th:text="${item.itemName}" th:classappend="${item.purchased} ? 'crossed' : ''"></td>
+    <td class="item-price" th:text="'£' + ${#numbers.formatDecimal(item.itemPrice / 100.0, 1, 'COMMA', 2, 'POINT')}"
+        th:attr="data-price=${item.itemPrice}"></td>
+    <td>
+        <button class="btn btn-sm"
+                th:classappend="${item.purchased} ? 'btn-warning' : 'btn-success'"
+                th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'toggle\')'"
+                th:text="${item.purchased} ? 'Uncross' : 'Cross off'"></button>
+    </td>
+    <td>
+        <div class="btn-group" role="group">
+            <button class="btn btn-outline-primary btn-sm"
+                    th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'move?direction=up\')'">↑</button>
+            <button class="btn btn-outline-primary btn-sm"
+                    th:onclick="'updateItem(' + ${list.id} + ',' + ${item.id} + ',\'move?direction=down\')'">↓</button>
+            <button class="btn btn-outline-danger btn-sm"
+                    th:onclick="'if(confirm(\'Are you sure you want to remove this item?\')) updateItem(' + ${list.id} + ',' + ${item.id} + ',\'remove\')'">
+                Remove
+            </button>
+
+        </div>
+    </td>
+</tr>
 </tbody>
+

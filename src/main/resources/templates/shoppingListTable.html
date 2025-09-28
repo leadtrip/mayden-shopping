@@ -1,5 +1,5 @@
-<table th:fragment="shoppingListTable" class="table table-striped">
-    <thead>
+<table th:fragment="shoppingListTable" class="table table-striped table-hover">
+    <thead class="table-dark">
     <tr>
         <th>ID</th>
         <th>Date created</th>
@@ -8,7 +8,7 @@
     <tbody>
     <tr th:each="shoppingList : ${shoppingLists}">
         <td>
-            <a th:href="@{/shoppingLists/{listId}(listId=${shoppingList.id})}"
+            <a class="text-decoration-none" th:href="@{/shoppingLists/{listId}(listId=${shoppingList.id})}"
                th:text="${shoppingList.id}">ID</a>
         </td>
         <td th:text="${@uiFormatter.formatDateTime(shoppingList.createdAt)}"></td>

@@ -47,11 +47,6 @@ public class ShoppingListService {
         return shoppingListRepository.save(list);
     }
 
-    public void deleteList(AppUser user, int id) {
-        ShoppingList list = shoppingListRepository.findByIdAndUser(id, user)
-                .orElseThrow(() -> new IllegalArgumentException("List not found or not yours"));
-        shoppingListRepository.delete(list);
-    }
 
     public void addItemToList(AppUser user, int listId, String name, int price) {
         ShoppingList list = shoppingListRepository.findByIdAndUser(listId, user)

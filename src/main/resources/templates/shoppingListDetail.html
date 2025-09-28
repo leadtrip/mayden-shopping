@@ -1,31 +1,25 @@
-<div th:fragment="content">
-    <div>
-        <h1 th:text="'Shopping list: ' + ${list.id} + ' (' + ${@uiFormatter.formatDateTime(list.createdAt)} + ')'"></h1>
+<div th:fragment="content" class="container mt-4">
+    <h1 th:text="'Shopping list: ' + ${list.id} + ' (' + ${@uiFormatter.formatDateTime(list.createdAt)} + ')'"></h1>
 
-        <div>
-            <input type="text" id="newItemName" placeholder="Item name" required />
-            <input type="number" step="0.01" id="newItemPrice" placeholder="Price" required />
-            <button type="button" th:onclick="'addItem(' + ${list.id} + ')'">Add Item</button>
-        </div>
-
-        <table>
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Purchased</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody th:replace="shoppingListItems :: itemsTableFragment"></tbody>
-        </table>
-
-        <p>Total: <span id="total"></span></p>
+    <div class="input-group mb-3">
+        <input type="text" id="newItemName" class="form-control" placeholder="Item name" required />
+        <input type="number" step="0.01" id="newItemPrice" class="form-control" placeholder="Price" required />
+        <button type="button" class="btn btn-primary" th:onclick="'addItem(' + ${list.id} + ')'">Add Item</button>
     </div>
 
-    <style>
-        .crossed { text-decoration: line-through; color: gray; }
-    </style>
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Purchased</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody th:replace="shoppingListItems :: itemsTableFragment"></tbody>
+    </table>
+
+    <p class="fw-bold">Total: <span id="total"></span></p>
 
     <script>
         updateTotal();

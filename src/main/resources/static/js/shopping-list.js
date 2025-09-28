@@ -31,6 +31,8 @@ async function addItem(listId) {
 
 function updateTotal() {
     let total = 0;
-    document.querySelectorAll(".item-price").forEach(td => total += parseFloat(td.textContent));
-    document.getElementById("total").textContent = total.toFixed(2);
+    document.querySelectorAll(".item-price").forEach(td => {
+        total += parseInt(td.dataset.price) || 0;
+    });
+    document.getElementById("total").textContent = '£' + (total / 100).toFixed(2);
 }
