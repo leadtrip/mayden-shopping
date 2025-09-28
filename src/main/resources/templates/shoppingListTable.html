@@ -7,7 +7,10 @@
     </thead>
     <tbody>
     <tr th:each="shoppingList : ${shoppingLists}">
-        <td th:text="${shoppingList.id}"></td>
+        <td>
+            <a th:href="@{/shoppingLists/{listId}(listId=${shoppingList.id})}"
+               th:text="${shoppingList.id}">ID</a>
+        </td>
         <td th:text="${@uiFormatter.formatDateTime(shoppingList.createdAt)}"></td>
     </tr>
     </tbody>

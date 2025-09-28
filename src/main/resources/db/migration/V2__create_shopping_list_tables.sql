@@ -1,7 +1,7 @@
 CREATE TABLE shopping_list (
                                id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                user_id BIGINT NOT NULL,
-                               created_at DATETIME NOT NULL,
+                               created_at DATETIME NOT NULL default now(),
                                CONSTRAINT fk_shopping_list_user FOREIGN KEY (user_id) REFERENCES app_user(id)
 );
 

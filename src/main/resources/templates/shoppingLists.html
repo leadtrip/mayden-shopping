@@ -1,4 +1,7 @@
 <div th:fragment="content">
     <h1>Shopping lists</h1>
+    <form th:action="@{/shoppingLists/create}" method="post">
+        <button type="submit">Create new list</button>
+    </form>
     <div th:insert="~{shoppingListTable :: shoppingListTable}"></div>
 </div>

@@ -1,0 +1,4 @@
+<div th:fragment="content">
+    <h1 th:text="'Shopping list: ' + ${list.id} + ' ('+${@uiFormatter.formatDateTime(list.createdAt)} + ')'"></h1>
+    Hi mum
+</div>
