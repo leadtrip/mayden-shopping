@@ -10,4 +10,4 @@ Then navigate to:
 
 `http://localhost:9051`
 
-And log in with either user jon or sue who both have the password notverysecret
+And log in with either user jon or sue who both have the password m4yD3N
