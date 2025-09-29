@@ -13,11 +13,10 @@ import wood.mike.maydenshopping.mapper.ShoppingListMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.transaction.annotation.Transactional // <-- Essential
+import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
 import spock.lang.Shared
 
-import java.time.LocalDateTime
 import java.util.stream.Collectors
 
 
