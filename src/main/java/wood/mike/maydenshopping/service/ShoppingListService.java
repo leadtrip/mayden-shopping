@@ -19,13 +19,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class ShoppingListService {
 
     private final ShoppingListRepository shoppingListRepository;
     private final ShoppingListItemRepository itemRepository;
     private final ShoppingListMapper mapper;
+
+    public ShoppingListService(ShoppingListRepository shoppingListRepository,
+                               ShoppingListItemRepository itemRepository,
+                               ShoppingListMapper mapper) {
+        this.shoppingListRepository = shoppingListRepository;
+        this.itemRepository = itemRepository;
+        this.mapper = mapper;
+    }
 
     public List<ShoppingListDTO> getListsForUser(AppUser user) {
         List<ShoppingList> lists = shoppingListRepository.findByUser(user);
