@@ -1,15 +1,13 @@
 package wood.mike.maydenshopping.unit.service
 
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import spock.lang.Specification
 import spock.lang.Subject
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.beans.factory.annotation.Autowired
 import wood.mike.maydenshopping.dto.ShoppingListDTO
 import wood.mike.maydenshopping.mapper.ShoppingListMapper
 import wood.mike.maydenshopping.model.AppUser
 import wood.mike.maydenshopping.model.ShoppingList
 import wood.mike.maydenshopping.model.ShoppingListItem
-import wood.mike.maydenshopping.repository.AppUserRepository
 import wood.mike.maydenshopping.repository.ShoppingListItemRepository
 import wood.mike.maydenshopping.repository.ShoppingListRepository
 import wood.mike.maydenshopping.service.ShoppingListService
@@ -121,12 +119,14 @@ class ShoppingListServiceSpec extends Specification {
 
     def "getListDto converts entity to DTO"() {
         given:
+            int numberOfItems = 10
             AppUser user = standardUser()
-            ShoppingList list = createList(user, 10)
+            ShoppingList list = createList(user, numberOfItems)
         when:
             ShoppingListDTO dto = shoppingListService.getListDto(list.id)
         then:
             1 * shoppingListRepository.findById(list.id) >> Optional.of(list)
+            dto.items().size() == numberOfItems
             dto.items().size() == list.items.size()
     }
 
