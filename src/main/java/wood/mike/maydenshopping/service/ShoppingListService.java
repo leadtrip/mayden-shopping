@@ -79,13 +79,19 @@ public class ShoppingListService {
     public void removeItem(AppUser user, Integer itemId) {
         ShoppingListItem item = itemRepository.findByIdAndShoppingListUserId(itemId, user.getId())
                 .orElseThrow(() -> new IllegalStateException("Item not found"));
-        itemRepository.delete(item);
 
         ShoppingList list = item.getShoppingList();
+
+        list.getItems().remove(item);
+
+        itemRepository.delete(item);
+
         List<ShoppingListItem> items = list.getItems().stream()
                 .sorted(Comparator.comparingInt(ShoppingListItem::getItemIdx))
                 .toList();
+
         for (int i = 0; i < items.size(); i++) items.get(i).setItemIdx(i + 1);
+
         shoppingListRepository.save(list);
     }
 

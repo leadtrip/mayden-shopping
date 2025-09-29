@@ -113,8 +113,16 @@ class ShoppingListServiceSpec extends Specification {
             1 * shoppingListRepository.findByIdAndUser(list.id, user) >> Optional.of(list)
             1 * itemRepository.saveAll(_)
             updatedList.items().size() == 10
-            updatedList.items().get(4).itemName() == 'item-5'
-            updatedList.items().get(5).itemName() == 'item-4'
+            updatedList.items().get(0).itemName() == 'item-0'
+            updatedList.items().get(1).itemName() == 'item-1'
+            updatedList.items().get(2).itemName() == 'item-2'
+            updatedList.items().get(3).itemName() == 'item-3'
+            updatedList.items().get(4).itemName() == 'item-5'   // moved up
+            updatedList.items().get(5).itemName() == 'item-4'   // moved down
+            updatedList.items().get(6).itemName() == 'item-6'
+            updatedList.items().get(7).itemName() == 'item-7'
+            updatedList.items().get(8).itemName() == 'item-8'
+            updatedList.items().get(9).itemName() == 'item-9'
     }
 
     def "getListDto converts entity to DTO"() {
