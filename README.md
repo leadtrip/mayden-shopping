@@ -25,3 +25,4 @@ Run all tests with:\
 * Better handling of price/currency input
 * Add UI tests e.g. selenium
 * Add ability to show/hide items that have been crossed off/purchased
+* Add spending limit and email sharing functions from spec
