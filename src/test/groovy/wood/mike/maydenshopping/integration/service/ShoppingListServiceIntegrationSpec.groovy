@@ -21,7 +21,7 @@ import java.util.stream.Collectors
 
 
 @SpringBootTest
-@ContextConfiguration(classes = [MaydenShoppingApplication])
+@ContextConfiguration(classes = [MaydenShoppingApplication.class])
 @Transactional
 class ShoppingListServiceIntegrationSpec extends Specification {
 

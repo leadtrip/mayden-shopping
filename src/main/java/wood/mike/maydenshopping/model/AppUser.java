@@ -2,6 +2,7 @@ package wood.mike.maydenshopping.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class AppUser {
 
     private boolean enabled = true;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ShoppingList> shoppingLists;
 

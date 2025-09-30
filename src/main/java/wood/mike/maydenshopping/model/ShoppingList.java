@@ -2,6 +2,7 @@ package wood.mike.maydenshopping.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,7 @@ public class ShoppingList {
     @JoinColumn(name = "user_id", nullable = false)
     private AppUser user;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL)
     private List<ShoppingListItem> items;
 }
