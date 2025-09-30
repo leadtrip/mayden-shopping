@@ -141,10 +141,10 @@ class ShoppingListItemControllerIntegrationTest extends Specification implements
             listDto != null
             listDto.id() == listId
             listDto.items().size() == DEFAULT_NUMBER_OF_ITEMS
-            listDto.items().get(0).itemName() == 'item-1'   // moved up
-            listDto.items().get(1).itemName() == 'item-0'   // moved down
-            listDto.items().get(2).itemName() == 'item-2'
-            listDto.items().get(3).itemName() == 'item-3'
-            listDto.items().get(4).itemName() == 'item-4'
+            listDto.items().get(0).itemName() == 'item-2'   // moved up
+            listDto.items().get(1).itemName() == 'item-1'   // moved down
+            listDto.items().get(2).itemName() == 'item-3'
+            listDto.items().get(3).itemName() == 'item-4'
+            listDto.items().get(4).itemName() == 'item-5'
     }
 }

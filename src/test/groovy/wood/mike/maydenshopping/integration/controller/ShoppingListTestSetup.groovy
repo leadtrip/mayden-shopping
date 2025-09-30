@@ -25,7 +25,8 @@ trait ShoppingListTestSetup {
     ShoppingList createList(AppUser user, int numberOfItems = 0) {
         ShoppingList list = new ShoppingList(user: user, items: [])
         numberOfItems.times {
-            list.getItems().add(new ShoppingListItem( itemName: "item-${it}", itemIdx: it, itemPrice: 100, shoppingList: list))
+            int idx = it+1
+            list.getItems().add(new ShoppingListItem( itemName: "item-${idx}", itemIdx: idx, itemPrice: 100, shoppingList: list))
         }
         list
     }

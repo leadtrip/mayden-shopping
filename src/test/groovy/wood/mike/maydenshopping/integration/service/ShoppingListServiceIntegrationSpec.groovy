@@ -1,5 +1,6 @@
 package wood.mike.maydenshopping.integration.service
 
+import org.springframework.test.context.ActiveProfiles
 import wood.mike.maydenshopping.MaydenShoppingApplication
 import wood.mike.maydenshopping.dto.ShoppingListDTO
 import wood.mike.maydenshopping.model.AppUser
@@ -23,6 +24,7 @@ import java.util.stream.Collectors
 @SpringBootTest
 @ContextConfiguration(classes = [MaydenShoppingApplication.class])
 @Transactional
+@ActiveProfiles("test")
 class ShoppingListServiceIntegrationSpec extends Specification {
 
     @Autowired
@@ -144,17 +146,18 @@ class ShoppingListServiceIntegrationSpec extends Specification {
         when:
             ShoppingListDTO updatedList = shoppingListService.moveItem(testUser, shoppingList.id, shoppingList.items.get(3).id, 'up')
         then:
-            updatedList.items().get(0).itemName() == 'item-0'
-            updatedList.items().get(1).itemName() == 'item-1'
-            updatedList.items().get(2).itemName() == 'item-3'   // moved up
-            updatedList.items().get(3).itemName() == 'item-2'   // moved down
-            updatedList.items().get(4).itemName() == 'item-4'
+            updatedList.items().get(0).itemName() == 'item-1'
+            updatedList.items().get(1).itemName() == 'item-2'
+            updatedList.items().get(2).itemName() == 'item-4'   // moved up
+            updatedList.items().get(3).itemName() == 'item-3'   // moved down
+            updatedList.items().get(4).itemName() == 'item-5'
     }
 
     ShoppingList createList(AppUser user, int numberOfItems = 0) {
         ShoppingList list = new ShoppingList(user: user, items: [])
         numberOfItems.times {
-            list.getItems().add(new ShoppingListItem( itemName: "item-${it}", itemIdx: it, itemPrice: 100, shoppingList: list))
+            int idx = it+1
+            list.getItems().add(new ShoppingListItem( itemName: "item-${idx}", itemIdx: idx, itemPrice: 100, shoppingList: list))
         }
         return list
     }

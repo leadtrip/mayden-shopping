@@ -105,24 +105,24 @@ class ShoppingListServiceSpec extends Specification {
             int itemIdx = item.itemIdx
             String itemName = item.itemName
         then:
-            itemIdx == 5
-            itemName == 'item-5'
+            itemIdx == 6
+            itemName == 'item-6'
         when:
             ShoppingListDTO updatedList = shoppingListService.moveItem(user, list.id, item.id, 'up')
         then:
             1 * shoppingListRepository.findByIdAndUser(list.id, user) >> Optional.of(list)
             1 * itemRepository.saveAll(_)
             updatedList.items().size() == 10
-            updatedList.items().get(0).itemName() == 'item-0'
-            updatedList.items().get(1).itemName() == 'item-1'
-            updatedList.items().get(2).itemName() == 'item-2'
-            updatedList.items().get(3).itemName() == 'item-3'
-            updatedList.items().get(4).itemName() == 'item-5'   // moved up
-            updatedList.items().get(5).itemName() == 'item-4'   // moved down
-            updatedList.items().get(6).itemName() == 'item-6'
-            updatedList.items().get(7).itemName() == 'item-7'
-            updatedList.items().get(8).itemName() == 'item-8'
-            updatedList.items().get(9).itemName() == 'item-9'
+            updatedList.items().get(0).itemName() == 'item-1'
+            updatedList.items().get(1).itemName() == 'item-2'
+            updatedList.items().get(2).itemName() == 'item-3'
+            updatedList.items().get(3).itemName() == 'item-4'
+            updatedList.items().get(4).itemName() == 'item-6'   // moved up
+            updatedList.items().get(5).itemName() == 'item-5'   // moved down
+            updatedList.items().get(6).itemName() == 'item-7'
+            updatedList.items().get(7).itemName() == 'item-8'
+            updatedList.items().get(8).itemName() == 'item-9'
+            updatedList.items().get(9).itemName() == 'item-10'
     }
 
     def "getListDto converts entity to DTO"() {
@@ -145,7 +145,8 @@ class ShoppingListServiceSpec extends Specification {
     ShoppingList createList(AppUser user, int numberOfItems = 0) {
         ShoppingList list = new ShoppingList(id: 1, createdAt: LocalDateTime.now(), user: user, items: [])
         numberOfItems.times {
-            list.getItems().add(new ShoppingListItem(id: it, itemName: "item-${it}", itemIdx: it, itemPrice: 100, shoppingList: list))
+            int idx = it+1
+            list.getItems().add(new ShoppingListItem(id: idx, itemName: "item-${idx}", itemIdx: idx, itemPrice: 100, shoppingList: list))
         }
         return list
     }
