@@ -6,7 +6,7 @@ import wood.mike.maydenshopping.model.ShoppingList
 import wood.mike.maydenshopping.model.ShoppingListItem
 import wood.mike.maydenshopping.repository.AppUserRepository
 import wood.mike.maydenshopping.repository.ShoppingListRepository
-import org.springframework.beans.factory.annotation.Autowired // If needed
+import org.springframework.beans.factory.annotation.Autowired
 
 trait ShoppingListTestSetup {
 
