@@ -1,7 +1,7 @@
 ### Mayden shopping list app
 
 A spring boot shopping list app backed by a MySql database.\
-Bring it all up with:\
+Bring it all up with:
 
 `./startup.sh`
 
@@ -11,7 +11,7 @@ Then navigate to:\
 `http://localhost:9051/shoppingLists`
 
 Log in with either user `jon` or `sue` who both have the password `m4yD3N`\
-`jon` has an existing shopping list on boot with a couple of items added
+`jon` has an existing shopping list on boot with a couple of items added.
 
 ### Testing
 Unit and integration tests are handled by spock with groovy.\
