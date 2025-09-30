@@ -7,10 +7,14 @@ async function updateItem(listId, itemId, action) {
 
 async function addItem(listId) {
     const name = document.getElementById("newItemName").value.trim();
-    const price = document.getElementById("newItemPrice").value;
+    const priceInput = document.getElementById("newItemPrice");
+    const price = priceInput.value;
     const priceToPence = Math.round(parseFloat(price) * 100);
-
     if (!name || !price) return alert("Please enter both name and price.");
+
+    if (!priceInput.checkValidity()) {
+        return alert(priceInput.validationMessage);
+    }
 
     const res = await fetch(`/shoppingLists/${listId}/items`, {
         method: 'POST',
