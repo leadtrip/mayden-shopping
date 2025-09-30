@@ -1,7 +1,7 @@
 ### Mayden shopping list app
 
 A spring boot shopping list app backed by a MySql database.\
-Bring it all up with\
+Bring it all up with:\
 
 `./startup.sh`
 
