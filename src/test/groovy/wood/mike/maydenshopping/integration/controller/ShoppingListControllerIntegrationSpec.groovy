@@ -1,6 +1,5 @@
 package wood.mike.maydenshopping.integration.controller
 
-import org.hamcrest.Matchers
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.test.context.support.WithUserDetails
 import org.springframework.test.context.ContextConfiguration
@@ -105,7 +104,7 @@ class ShoppingListControllerIntegrationSpec extends Specification{
     long listCountForUser(String username = USERNAME_SUE) {
         shoppingListRepository.findAll()
                 .stream()
-                .filter(shoppingList -> shoppingList.getUser().getUsername() == USERNAME_SUE)
+                .filter(shoppingList -> shoppingList.getUser().getUsername() == username)
                 .count()
     }
 
