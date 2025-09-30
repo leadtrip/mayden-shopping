@@ -11,13 +11,8 @@ import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 import wood.mike.maydenshopping.MaydenShoppingApplication
 import wood.mike.maydenshopping.dto.ShoppingListDTO
-import wood.mike.maydenshopping.model.AppUser
-import wood.mike.maydenshopping.model.ShoppingList
-import wood.mike.maydenshopping.model.ShoppingListItem
-import wood.mike.maydenshopping.repository.AppUserRepository
-import wood.mike.maydenshopping.repository.ShoppingListRepository
 
-import static org.hamcrest.Matchers.*
+import static org.hamcrest.Matchers.hasSize
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -27,19 +22,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @ContextConfiguration(classes = MaydenShoppingApplication.class)
 @WebAppConfiguration
-class ShoppingListControllerIntegrationSpec extends Specification{
+class ShoppingListControllerIntegrationSpec extends Specification implements ShoppingListTestSetup{
 
     static final String USERNAME_SUE = 'sue'     // sue is added by flyway
     static final Integer DEFAULT_NUMBER_OF_ITEMS = 5
 
     @Autowired
     private WebApplicationContext context;
-
-    @Autowired
-    private ShoppingListRepository shoppingListRepository
-
-    @Autowired
-    private AppUserRepository appUserRepository
 
     MockMvc mvc
 
@@ -108,17 +97,4 @@ class ShoppingListControllerIntegrationSpec extends Specification{
                 .count()
     }
 
-    ShoppingList addTestData(int numberOfItems = DEFAULT_NUMBER_OF_ITEMS) {
-        AppUser bob = appUserRepository.findByUsername(USERNAME_SUE).get()
-        ShoppingList shoppingList = createList(bob, numberOfItems)
-        shoppingListRepository.save(shoppingList)
-    }
-
-    ShoppingList createList(AppUser user, int numberOfItems = 0) {
-        ShoppingList list = new ShoppingList(user: user, items: [])
-        numberOfItems.times {
-            list.getItems().add(new ShoppingListItem( itemName: "item-${it}", itemIdx: it, itemPrice: 100, shoppingList: list))
-        }
-        list
-    }
 }

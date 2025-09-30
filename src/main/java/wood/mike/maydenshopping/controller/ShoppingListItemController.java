@@ -35,8 +35,7 @@ public class ShoppingListItemController {
     @PostMapping
     public ModelAndView addItemFragment(@AuthenticationPrincipal UserDetails principal,
                                   @PathVariable Integer listId,
-                                  @RequestBody Map<String, Object> payload,
-                                  Model model) {
+                                  @RequestBody Map<String, Object> payload) {
         AppUser user = getCurrentUser(principal);
         shoppingListService.addItemToList(user, listId,
                 payload.get("itemName").toString(),
